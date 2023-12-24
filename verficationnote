@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vérification de la note</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .header {
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+        input[type="text"] {
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .success {
+            color: green;
+        }
+        .failure {
+            color: red;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Bienvenue</h1>
+        <p>Entrez une note entre 0 et 20 pour vérifier la réussite</p>
+    </div>
+
+    <div class="container">
+        <h2>Vérification de la note</h2>
+        <label for="note">Entrez la note :</label>
+        <input type="text" id="note">
+        <button onclick="getNote()">Vérifier</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function examin(note) {
+            var result = document.getElementById("result");
+            if (note >= 0 && note <= 20) {
+                if (note > 10) {
+                    result.className = "success";
+                    result.textContent = "Réussite";
+                } else {
+                    result.className = "failure";
+                    result.textContent = "Échec";
+                }
+            } else {
+                result.className = "error";
+                result.textContent = "La note doit être entre 0 et 20";
+            }
+        }
+
+        function getNote() {
+            var noteInput = document.getElementById("note");
+            var note = parseFloat(noteInput.value);
+            var result = document.getElementById("result");
+
+            if (!isNaN(note)) {
+                examin(note);
+            } else {
+                result.className = "error";
+                result.textContent = "Veuillez entrer un nombre valide";
+            }
+        }
+    </script>
+</body>
+</html>
